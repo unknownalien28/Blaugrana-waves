@@ -289,3 +289,73 @@ footer {
     gap: 0.8rem;
   }
 }
+
+/* Matchday Section */
+.matchday-section {
+  padding: 4rem 2rem;
+  background-color: #1a1a1a;
+  text-align: center;
+  color: #fff;
+}
+
+.matchday-section h2 {
+  color: var(--fcbarca-red);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.matchday-fixture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2a2a2a;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.matchday-fixture p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.matchday-fixture .teams {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.matchday-fixture .vs {
+  font-size: 1.2rem;
+  color: var(--fcbarca-red);
+}
+
+.matchday-fixture .date,
+.matchday-fixture .venue {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .matchday-fixture {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  .matchday-fixture .teams {
+    flex-direction: column;
+    font-size: 1.2rem;
+  }
+
+  .matchday-fixture .vs {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+}
