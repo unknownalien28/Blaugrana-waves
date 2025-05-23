@@ -1,6 +1,6 @@
 // 1. Live “Hot News” from FootballCritic RSS
 (async function loadHotNews() {
-  const feedUrl = 'https://www.footballcritic.com/rss/barcelona';  // Barça feed auto-updates 0
+  const feedUrl = 'https://www.footballcritic.com/rss/barcelona';  // Barça feed auto-updates
   try {
     const res = await fetch(feedUrl);
     if (!res.ok) throw new Error('Network error');
@@ -27,7 +27,7 @@ fetch('https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=140&s
   method: 'GET',
   headers: {
     'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-    'X-RapidAPI-Key': 'YOUR_RAPIDAPI_KEY'
+    'X-RapidAPI-Key': 'YOUR_RAPIDAPI_KEY'  // Replace with your actual API key
   }
 })
 .then(res => res.json())
@@ -66,4 +66,12 @@ players.forEach((name, i) => {
       scales: { x: { display: false }, y: { display: false } }
     }
   });
+});
+
+// 4. Responsive Hamburger Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
 });
