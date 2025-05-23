@@ -53,7 +53,7 @@ body {
 /* Mobile styles */
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    display: flex; /* changed from none to flex for transform to work */
     flex-direction: column;
     background-color: var(--fcbarca-blue);
     position: fixed;
@@ -64,17 +64,23 @@ body {
     padding-top: 4rem;
     gap: 2rem;
     z-index: 1000;
+
+    /* Sliding offscreen and smooth transition */
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
   }
 
   .nav-links.active {
-    display: flex;
+    transform: translateX(0);
   }
 
   .hamburger {
     display: block;
+    position: relative;
+    z-index: 1100;
   }
 }
-}
+
 .cta-btn {
   background: var(--fcbarca-red);
   color: #fff;
@@ -266,4 +272,3 @@ footer {
     gap: 0.8rem;
   }
 }
-
