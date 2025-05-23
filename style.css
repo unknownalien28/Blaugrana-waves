@@ -166,3 +166,68 @@ footer {
   background-color: var(--fcbarca-blue);
   padding: 1rem; text-align: center; color: #aaa;
 }
+
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  /* Navbar: stack nav-links vertically and add spacing */
+  .nav-links {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  
+  /* Reduce navbar padding */
+  .navbar {
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  /* Hero content: reduce padding and width */
+  .hero-content {
+    max-width: 90%;
+    padding: 0 1rem;
+  }
+  
+  /* Hero headline smaller */
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  /* Card grid: stack cards vertically */
+  .card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Card width: use max-width 90% instead of fixed width */
+  .card {
+    width: 90%;
+    max-width: 300px;
+  }
+  
+  /* Player profile width */
+  .player-profile {
+    width: 90%;
+    max-width: 300px;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Scorer table: make it scrollable horizontally */
+  .scorer-table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+  
+  /* Heatmap grid: 1 column */
+  .heatmap-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Buttons in hero stacked vertically with gap */
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
