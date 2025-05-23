@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BLAUGRANA Waves</title>
+
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins&display=swap" rel="stylesheet" />
+
   <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+
   <!-- Chart.js & Matrix Plugin -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script> <!-- Chart.js v4+ -->
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2"></script> <!-- Matrix plugin -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-matrix@2"></script>
+
   <!-- AOS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
 </head>
 <body>
+
   <!-- Navbar -->
- <header>
-  <nav class="navbar" data-aos="fade-down">
-  <div class="hamburger" id="hamburger">&#9776;</div> <!-- hamburger icon -->
-  <div class="navbar-title" style="text-align:center; font-family:Orbitron,Arial,sans-serif; font-size:1.3em; margin-bottom:8px;">
-    BLAUGRANA WAVES
-  </div>
-  <div class="logo">
-    <img src="Asset/bw-logo.png" alt="BW Logo" style="height:40px;">
-  </div>
-</nav>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#hot-news">Hot News</a></li>
-      <li><a href="#matchday">Matchday</a></li>
-      <li><a href="#dna">Barça DNA</a></li>
-      <li><a href="#stats">Stats</a></li>
-      <li><a href="pages/videos.html">Videos</a></li>
-      <li><a href="pages/community.html">Community</a></li>
-      <li><a href="pages/contact.html">Contact</a></li>
-      <li><a href="https://whatsapp.com/channel/0029Vb5t5EaEwEjnvkk6Yb1Z"
-             class="cta-btn" target="_blank" rel="noopener">Join WhatsApp</a></li>
-    </ul>
-  </nav>
-</header>
+  <header>
+    <nav class="navbar" data-aos="fade-down">
+      <div class="logo">
+        <img src="assets/bw-logo.png" alt="BW Logo" style="height:40px;" />
+      </div>
+      <div class="navbar-title" style="font-family: Orbitron, Arial, sans-serif; font-size: 1.3em;">
+        BLAUGRANA WAVES
+      </div>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#hot-news">Hot News</a></li>
+        <li><a href="#matchday">Matchday</a></li>
+        <li><a href="#dna">Barça DNA</a></li>
+        <li><a href="#stats">Stats</a></li>
+        <li><a href="pages/videos.html">Videos</a></li>
+        <li><a href="pages/community.html">Community</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+        <li>
+          <a href="https://whatsapp.com/channel/0029Vb5t5EaEwEjnvkk6Yb1Z" class="cta-btn" target="_blank" rel="noopener">
+            Join WhatsApp
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- Hero Section -->
   <section id="home" class="hero" data-aos="zoom-in">
     <video class="hero-video" autoplay muted loop playsinline>
-      <source src="Asset/campnou.mp4" type="video/mp4">
-      <source src="Asset/messi-highlights.mp4" type="video/mp4">
-      <source src="Asset/yamal-dribbles.mp4" type="video/mp4">
+      <source src="assets/campnou.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -56,8 +61,7 @@
       <p>Live the thrill. Share the passion. Echo the legends.</p>
       <div class="hero-buttons">
         <a href="#hot-news" class="btn">Discover Hot News</a>
-        <a href="https://whatsapp.com/channel/0029Vb5t5EaEwEjnvkk6Yb1Z"
-           class="btn whatsapp-cta" target="_blank" rel="noopener">
+        <a href="https://whatsapp.com/channel/0029Vb5t5EaEwEjnvkk6Yb1Z" class="btn whatsapp-cta" target="_blank" rel="noopener">
           🔊 Join Our WhatsApp Channel
         </a>
       </div>
@@ -94,12 +98,12 @@
     <h2>Barça DNA</h2>
     <div class="dna-grid">
       <div class="player-profile" data-aos="fade-up" data-aos-delay="100">
-        <img src="assets/yamal.jpg" alt="Lamine Yamal">
+        <img src="assets/yamal.jpg" alt="Lamine Yamal" />
         <h4>Lamine Yamal</h4>
         <p>La Masia jewel lighting up the right flank.</p>
       </div>
       <div class="player-profile" data-aos="fade-up" data-aos-delay="200">
-        <img src="assets/gavi.jpg" alt="Gavi">
+        <img src="assets/gavi.jpg" alt="Gavi" />
         <h4>Gavi</h4>
         <p>The embodiment of passion and grit in midfield.</p>
       </div>
@@ -117,6 +121,7 @@
         <!-- Populated via API -->
       </tbody>
     </table>
+
     <h2>Player Heatmaps</h2>
     <div class="heatmap-grid">
       <canvas id="heatmap1" class="heatmap"></canvas>
@@ -128,14 +133,28 @@
   </section>
 
   <!-- Footer -->
- <footer data-aos="fade-up" style="text-align:center; padding: 1em 0; font-family: Arial, sans-serif;">
-  <p>&copy; 2025 <strong>BLAUGRANA Waves</strong> – Built for the Culers, by a Culer.</p>
-  <p>Designed by Alien 👽 | <a href="https://wa.me/+2348100236360" target="_blank" rel="noopener noreferrer" style="color:#007bff; text-decoration:none;">Contact me on WhatsApp</a></p>
-</footer>
+  <footer data-aos="fade-up" style="text-align:center; padding: 1em 0; font-family: Arial, sans-serif;">
+    <p>&copy; 2025 <strong>BLAUGRANA Waves</strong> – Built for the Culers, by a Culer.</p>
+    <p>Designed by Alien 👽 | 
+      <a href="https://wa.me/+2348100236360" target="_blank" rel="noopener noreferrer" style="color:#007bff; text-decoration:none;">
+        Contact me on WhatsApp
+      </a>
+    </p>
+  </footer>
 
   <!-- Scripts -->
   <script src="script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script> AOS.init({ duration: 800, once: true }); </script>
+
+  <!-- Mobile Navbar Toggle -->
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  </script>
 </body>
-        </html>
+</html>
