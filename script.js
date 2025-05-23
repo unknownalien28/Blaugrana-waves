@@ -1,27 +1,39 @@
 const apiKey = '0336b2cc1102450a85511f10f44fdd7f';
 const newsList = document.getElementById('news-list');
 
-fetch(`https://newsapi.org/v2/everything?q=Barcelona%20FC&sortBy=publishedAt&language=en&apiKey=${apiKey}`)
-  .then(response => response.json())
-  .then(data => {
-    newsList.innerHTML = ''; // Clear existing content
-    if (data.articles && data.articles.length > 0) {
-      data.articles.forEach(article => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <a href="${article.url}" target="_blank" rel="noopener noreferrer">${article.title}</a>
-          <br><small>${new Date(article.publishedAt).toLocaleDateString()}</small>
-        `;
-        newsList.appendChild(li);
-      });
-    } else {
-      newsList.innerHTML = '<li>No recent news found.</li>';
-    }
-  })
-  .catch(error => {
-    console.error('Error fetching Barcelona news:', error);
-    newsList.innerHTML = '<li>Failed to load news.</li>';
-  });
+function fetchNews(query) {
+  return fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&apiKey=${apiKey}`)
+    .then(res => res.json());
+}
+
+async function loadNews() {
+  newsList.innerHTML = '<li>Loading news...</li>';
+  
+  let data = await fetchNews('Barcelona');
+  if (!data.articles || data.articles.length === 0) {
+    data = await fetchNews('FC Barcelona');
+  }
+
+  if (data.articles && data.articles.length > 0) {
+    newsList.innerHTML = '';
+    data.articles.forEach(article => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <a href="${article.url}" target="_blank" rel="noopener noreferrer">${article.title}</a>
+        <br><small>${new Date(article.publishedAt).toLocaleDateString()}</small>
+      `;
+      newsList.appendChild(li);
+    });
+  } else {
+    newsList.innerHTML = '<li>No recent news found.</li>';
+  }
+}
+
+loadNews().catch(err => {
+  console.error(err);
+  newsList.innerHTML = '<li>Error loading news.</li>';
+});
+
 
 // 2. Fetch Top Scorers from API-Football
 fetch('https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=140&season=2024', {
