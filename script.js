@@ -1,38 +1,46 @@
-const apiKey = '0336b2cc1102450a85511f10f44fdd7f';
+// Google News RSS URL for Barcelona FC
+const rssUrl = encodeURIComponent('https://news.google.com/rss/search?q=Barcelona+FC&hl=en-US&gl=US&ceid=US:en');
+const proxyUrl = `https://api.allorigins.win/get?url=${rssUrl}`;
 const newsList = document.getElementById('news-list');
 
-function fetchNews(query) {
-  return fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&apiKey=${apiKey}`)
-    .then(res => res.json());
-}
-
-async function loadNews() {
+async function loadGoogleNewsRSS() {
   newsList.innerHTML = '<li>Loading news...</li>';
-  
-  let data = await fetchNews('Barcelona');
-  if (!data.articles || data.articles.length === 0) {
-    data = await fetchNews('FC Barcelona');
-  }
 
-  if (data.articles && data.articles.length > 0) {
+  try {
+    const response = await fetch(proxyUrl);
+    const data = await response.json();
+
+    // Parse XML string from response.contents
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+    const items = xmlDoc.querySelectorAll('item');
+
+    if (items.length === 0) {
+      newsList.innerHTML = '<li>No recent news found.</li>';
+      return;
+    }
+
     newsList.innerHTML = '';
-    data.articles.forEach(article => {
+    items.forEach(item => {
+      const title = item.querySelector('title').textContent;
+      const link = item.querySelector('link').textContent;
+      const pubDate = new Date(item.querySelector('pubDate').textContent);
+
       const li = document.createElement('li');
       li.innerHTML = `
-        <a href="${article.url}" target="_blank" rel="noopener noreferrer">${article.title}</a>
-        <br><small>${new Date(article.publishedAt).toLocaleDateString()}</small>
+        <a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a>
+        <br><small>${pubDate.toLocaleDateString()}</small>
       `;
       newsList.appendChild(li);
     });
-  } else {
-    newsList.innerHTML = '<li>No recent news found.</li>';
+  } catch (error) {
+    console.error('Error loading Google News RSS:', error);
+    newsList.innerHTML = '<li>Error loading news.</li>';
   }
 }
 
-loadNews().catch(err => {
-  console.error(err);
-  newsList.innerHTML = '<li>Error loading news.</li>';
-});
+// Run it on page load
+window.addEventListener('DOMContentLoaded', loadGoogleNewsRSS);
 
 
 // 2. Fetch Top Scorers from API-Football
