@@ -17,6 +17,7 @@ body {
   padding: 1rem 2rem;
   background-color: var(--fcbarca-blue);
   position: relative;
+  z-index: 1000;
 }
 
 .logo img {
@@ -83,7 +84,7 @@ body {
     transform: translateX(-100%);
     
     /* Fix: Make sure nav-links are on top */
-    z-index: 3000;  /* Increased z-index */
+    z-index: 9999;  /* Increased z-index */
   }
 
   .nav-links.active {
