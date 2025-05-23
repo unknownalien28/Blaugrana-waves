@@ -1,26 +1,27 @@
-// 1. Live “Hot News” from FootballCritic RSS
-(async function loadHotNews() {
-  const feedUrl = 'https://www.footballcritic.com/rss/barcelona';  // Barça feed auto-updates
-  try {
-    const res = await fetch(feedUrl);
-    if (!res.ok) throw new Error('Network error');
-    const xmlText = await res.text();
-    const xml = new DOMParser().parseFromString(xmlText, 'application/xml');
-    const items = Array.from(xml.querySelectorAll('item')).slice(0, 5);
-    const ul = document.getElementById('news-list');
-    items.forEach(item => {
-      const title = item.querySelector('title')?.textContent || 'No title';
-      const link  = item.querySelector('link')?.textContent  || '#';
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
-      ul.appendChild(li);
-    });
-  } catch (err) {
-    console.error('RSS load failed:', err);
-    document.getElementById('news-list').innerHTML =
-      '<li>Unable to load news. Please try again later.</li>';
-  }
-})();
+const apiKey = '0336b2cc1102450a85511f10f44fdd7f';
+const newsList = document.getElementById('news-list');
+
+fetch(`https://newsapi.org/v2/everything?q=Barcelona%20FC&sortBy=publishedAt&language=en&apiKey=${apiKey}`)
+  .then(response => response.json())
+  .then(data => {
+    newsList.innerHTML = ''; // Clear existing content
+    if (data.articles && data.articles.length > 0) {
+      data.articles.forEach(article => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <a href="${article.url}" target="_blank" rel="noopener noreferrer">${article.title}</a>
+          <br><small>${new Date(article.publishedAt).toLocaleDateString()}</small>
+        `;
+        newsList.appendChild(li);
+      });
+    } else {
+      newsList.innerHTML = '<li>No recent news found.</li>';
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching Barcelona news:', error);
+    newsList.innerHTML = '<li>Failed to load news.</li>';
+  });
 
 // 2. Fetch Top Scorers from API-Football
 fetch('https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=140&season=2024', {
