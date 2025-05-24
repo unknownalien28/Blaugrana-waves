@@ -166,19 +166,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+  const track = document.querySelector('.carousel-track');
   const slides = document.querySelectorAll('.slide');
   let current = 0;
+  const total = slides.length;
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-    });
+  function goToSlide(index) {
+    track.style.transform = `translateX(-${index * 100}%)`;
   }
 
   function nextSlide() {
-    current = (current + 1) % slides.length;
-    showSlide(current);
+    current = (current + 1) % total;
+    goToSlide(current);
   }
 
-  setInterval(nextSlide, 3500); // slide changes every 3.5 seconds
+  // Initialize
+  goToSlide(current);
+
+  setInterval(nextSlide, 3500);
 });
