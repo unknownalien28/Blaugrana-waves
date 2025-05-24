@@ -131,5 +131,5 @@ document.addEventListener('DOMContentLoaded', function() {
   goToSlide(current);
 
   // Adjust 3500 (milliseconds) to a smaller number for faster, or bigger for slower
-  setInterval(nextSlide, 3500);
+  setInterval(nextSlide, 5000);
 });
