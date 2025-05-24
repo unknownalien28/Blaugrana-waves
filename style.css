@@ -412,8 +412,10 @@ footer {
 .match-info .teams {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   margin-bottom: 0.3rem;
+}
 }
 .team-logo {
   width: 36px;
@@ -454,4 +456,34 @@ footer {
   .team-logo {
     width: 28px;
   }
+}
+
+/* Fade-in on page load */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glowing pulse animation for border */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px 2px #A50044; /* Barca red glow */
+  }
+  50% {
+    box-shadow: 0 0 12px 4px #004D98; /* Barca blue glow */
+  }
+}
+
+/* Apply fade-in + glowPulse to match cards */
+.matchday-fixture {
+  animation: fadeInUp 1s ease forwards,
+             glowPulse 3s ease-in-out infinite;
+  border: 2px solid #A50044; /* starting border color */
+  border-radius: 12px;
 }
