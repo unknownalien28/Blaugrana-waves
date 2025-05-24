@@ -66,29 +66,6 @@ fetch('https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=140&s
 })
 .catch(console.error);
 
-// 3. Render Matrix Heatmaps (placeholder random data)
-const players = ['Mbappé','Lewandowski','Budimir','Pérez','Raphinha'];
-players.forEach((name, i) => {
-  const ctx = document.getElementById(`heatmap${i+1}`).getContext('2d');
-  Chart.register(Chart.MatrixController, Chart.MatrixElement);
-  new Chart(ctx, {
-    type: 'matrix',
-    data: {
-      datasets: [{
-        data: Array.from({length:100}, () => ({
-          x: Math.floor(Math.random()*10),
-          y: Math.floor(Math.random()*10),
-          v: Math.random()*30
-        }))
-      }]
-    },
-    options: {
-      plugins: { title: { display: true, text: `${name} Heatmap` } },
-      scales: { x: { display: false }, y: { display: false } }
-    }
-  });
-});
-
 // 4. Responsive Hamburger Menu Toggle
 document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('hamburger');
