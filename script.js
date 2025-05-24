@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
     grid.scrollLeft += scrollAmount * direction;
   }
 
-  setInterval(autoScroll, 20); // Adjust speed if needed
+  setInterval(autoScroll, 40); // Adjust speed if needed
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     grid.scrollLeft += scrollAmount * direction;
   }
 
-  setInterval(autoScroll, 20); // Adjust speed if needed
+  setInterval(autoScroll, 40); // Adjust speed if needed
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -160,5 +160,5 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize
   goToSlide(current);
 
-  setInterval(nextSlide, 3500);
+  setInterval(nextSlide, 5000);
 });
