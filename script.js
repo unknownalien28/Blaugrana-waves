@@ -108,3 +108,23 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+<script>
+  // Example dynamic update
+  document.addEventListener("DOMContentLoaded", function () {
+    // Update calendar date
+    const calendarDay = document.querySelector('.calendar .day');
+    const calendarMonth = document.querySelector('.calendar .month');
+
+    const matchDate = new Date('2025-05-24'); // ← CHANGE DATE HERE
+    const day = matchDate.getDate();
+    const month = matchDate.toLocaleString('default', { month: 'short' }).toUpperCase();
+
+    calendarDay.textContent = day;
+    calendarMonth.textContent = month;
+
+    // Update match title and info
+    document.querySelector('.match-info h3').textContent = "Athletic Bilbao vs Barcelona";
+    document.querySelector('.match-info p').textContent = "La Liga – San Mamés";
+    document.querySelector('.match-info span').textContent = "Kick-off: 8:00 PM | Live on Blaugrana Waves";
+  });
+</script>
