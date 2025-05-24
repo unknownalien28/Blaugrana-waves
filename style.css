@@ -500,7 +500,8 @@ footer {
 }
 .heatmap-carousel {
   position: relative;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   height: 220px;
   margin: 2rem auto 0 auto;
   overflow: hidden;
@@ -508,12 +509,13 @@ footer {
   box-shadow: 0 0 12px rgba(165,0,68,0.6);
   background: #222;
 }
+}
 
 .carousel-track {
   display: flex;
   transition: transform 1s cubic-bezier(0.77,0,0.18,1);
   height: 100%;
-  width: 100%;
+}
 }
 
 .slide {
