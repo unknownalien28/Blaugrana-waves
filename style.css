@@ -359,61 +359,99 @@ footer {
     margin: 0.5rem 0;
   }
 }
-
 .match-card {
   background-color: #1e1e1e;
   color: #fff;
-  padding: 1.5rem 1rem 1rem 1rem;
-  border-radius: 10px;
-  width: 280px;
-  box-shadow: 0 0 8px rgba(165, 0, 68, 0.7);
-  margin: 0 1rem;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 0 auto 1.5rem auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  font-family: 'Arial', sans-serif;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s;
+  min-height: 140px;
+  align-items: stretch;
 }
 .match-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
 }
-.match-card .teams {
-  font-weight: 700;
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
+.match-card .calendar {
+  background-color: #003399;
+  width: 70px;
+  min-width: 70px;
+  height: 70px;
+  border-radius: 10px;
   text-align: center;
-  width: 100%;
   display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #fff;
+  margin-right: 1.2rem;
+  align-self: center;
 }
-.match-card .teams img {
-  height: 32px;
-  width: 32px;
-  object-fit: contain;
+.match-card .calendar .day {
+  font-size: 2rem;
+  line-height: 1.2;
 }
-.match-card .date,
-.match-card .venue {
-  font-size: 0.9rem;
+.match-card .calendar .month {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.match-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.match-info .teams {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 0.3rem;
-  color: #ddd;
-  text-align: center;
-  width: 100%;
 }
-
-/* Container for previous and next matches for centering */
-.match-cards-container {
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: flex-start;
-  gap: 2rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
+.team-logo {
+  width: 36px;
+  height: auto;
 }
-
-/* Responsive for small screens: stack vertically */
-@media (max-width: 480px) {
-  .match-cards-container {
+.vs {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fcba03;
+}
+.match-info h3 {
+  font-size: 1.1rem;
+  color: #fcba03;
+  margin: 0.3rem 0;
+}
+.match-info p {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin: 0.2rem 0;
+}
+.match-info span {
+  font-size: 0.92rem;
+  color: #999;
+}
+@media (max-width: 500px) {
+  .match-card {
     flex-direction: column;
-    gap: 1.5rem;
+    align-items: center;
+    max-width: 98vw;
+    padding: 1rem;
+  }
+  .match-card .calendar {
+    margin: 0 0 0.7rem 0;
+  }
+  .match-info .teams {
+    gap: 5px;
+  }
+  .team-logo {
+    width: 28px;
   }
 }
