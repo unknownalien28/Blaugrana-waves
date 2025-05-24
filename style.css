@@ -498,3 +498,54 @@ footer {
   border: 2px solid #A50044; /* starting border color */
   border-radius: 12px;
 }
+<style>
+.heatmap-carousel {
+  position: relative;
+  width: 320px;
+  height: 220px;
+  margin: 2rem auto 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(165,0,68,0.6);
+  background: #222;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.slide.active {
+  left: 0;
+  opacity: 1;
+  z-index: 5;
+}
+
+.heatmap-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.player-img {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #A50044;
+  box-shadow: 0 0 8px rgba(165, 0, 68, 0.9);
+  object-fit: cover;
+  z-index: 10;
+}
+</style>
