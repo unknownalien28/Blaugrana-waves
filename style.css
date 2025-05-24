@@ -214,15 +214,16 @@ body {
   background-color: #222;
 }
 .heatmap-grid {
-  display: flex;                /* Change from grid to flex */
-  overflow-x: auto;             /* Enable horizontal scroll */
+  display: flex;
+  overflow-x: auto;
   gap: 1.5rem;
   margin-top: 2rem;
   scroll-behavior: smooth;
-  scrollbar-width: none;        /* Hide scrollbar in Firefox */
+  scrollbar-width: none; /* Firefox */
 }
 .heatmap-grid::-webkit-scrollbar {
-  display: none;                /* Hide scrollbar in Chrome/Safari */
+  display: none; /* Chrome/Safari */
+              /* Hide scrollbar in Chrome/Safari */
 }
 footer {
   background-color: var(--fcbarca-blue);
