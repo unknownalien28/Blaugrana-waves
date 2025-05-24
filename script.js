@@ -146,3 +146,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   setInterval(autoScroll, 20); // Adjust speed if needed
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const grid = document.querySelector('.heatmap-grid');
+  if (!grid) return;
+  let scrollAmount = 1; // Pixels per tick
+  let direction = 1;    // 1 for right, -1 for left
+
+  function autoScroll() {
+    if (grid.scrollLeft + grid.clientWidth >= grid.scrollWidth) {
+      direction = -1; // Scroll left when reaching the end
+    } else if (grid.scrollLeft <= 0) {
+      direction = 1; // Scroll right when at the start
+    }
+    grid.scrollLeft += scrollAmount * direction;
+  }
+
+  setInterval(autoScroll, 20); // Adjust speed if needed
+});
