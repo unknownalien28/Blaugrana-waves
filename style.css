@@ -359,3 +359,86 @@ footer {
     margin: 0.5rem 0;
   }
 }
+
+.match-card {
+  background-color: #1e1e1e;
+  color: #fff;
+  padding: 1.5rem 1rem 1rem 1rem;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  margin-bottom: 1.5rem;
+  font-family: 'Arial', sans-serif;
+}
+
+.match-card:hover {
+  transform: translateY(-5px);
+}
+
+.match-card .calendar {
+  background-color: #003399; /* Barça Blue */
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  text-align: center;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+}
+
+.match-card .calendar .day {
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.match-card .calendar .month {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.match-info {
+  margin-left: 80px;
+}
+
+.match-info .teams {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.3rem;
+}
+
+.team-logo {
+  width: 30px;
+  height: auto;
+}
+
+.vs {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fcba03;
+}
+
+.match-info h3 {
+  font-size: 1rem;
+  color: #fcba03;
+  margin: 0.3rem 0;
+}
+
+.match-info p {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 0.2rem 0;
+}
+
+.match-info span {
+  font-size: 0.85rem;
+  color: #999;
+}
