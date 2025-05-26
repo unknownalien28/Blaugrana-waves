@@ -1,7 +1,7 @@
 // 1. Load Google News RSS (Barcelona FC)
 async function loadGoogleNewsRSS() {
-  const rssUrl = encodeURIComponent('https://news.google.com/rss/search?q=Barcelona+FC&hl=en-US&gl=US&ceid=US:en');
-  const proxyUrl = `https://api.allorigins.win/get?url=${rssUrl}`;
+ const rssUrl = 'https://news.google.com/rss/search?q=Barcelona+FC&hl=en-US&gl=US&ceid=US:en';
+ const proxyUrl = `https://thingproxy.freeboard.io/fetch/${rssUrl}`;
   const newsList = document.getElementById('news-list');
   newsList.innerHTML = '<li>Loading news...</li>';
 
