@@ -1,7 +1,7 @@
 // 1. Load Google News RSS (Barcelona FC)
 async function loadGoogleNewsRSS() {
   const rssUrl = encodeURIComponent('https://news.google.com/rss/search?q=Barcelona+FC&hl=en-US&gl=US&ceid=US:en');
-  const proxyUrl = https://api.allorigins.win/get?url=${rssUrl};
+  const proxyUrl = `https://api.allorigins.win/get?url=${rssUrl}`;
   const newsList = document.getElementById('news-list');
   newsList.innerHTML = '<li>Loading news...</li>';
 
@@ -16,37 +16,36 @@ async function loadGoogleNewsRSS() {
     if (items.length === 0) {
       newsList.innerHTML = '<li>No recent news found.</li>';
     } else {
-     items.forEach((item, i) => {
-  const title = item.querySelector('title').textContent;
-  const link = item.querySelector('link').textContent;
-  const pubDate = new Date(item.querySelector('pubDate').textContent);
-  const li = document.createElement('li');
-  li.innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a> 
-                  <br><small>${pubDate.toLocaleDateString()}</small>`;
-  newsList.appendChild(li);
-});
+      items.forEach((item, i) => {
+        const title = item.querySelector('title').textContent;
+        const link = item.querySelector('link').textContent;
+        const pubDate = new Date(item.querySelector('pubDate').textContent);
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a> 
+                        <br><small>${pubDate.toLocaleDateString()}</small>`;
+        newsList.appendChild(li);
+      });
 
-// Animate News Fading Sequentially
-let newsItems = newsList.querySelectorAll('li');
-let currentIndex = 0;
+      // Animate News Fading Sequentially
+      let newsItems = newsList.querySelectorAll('li');
+      let currentIndex = 0;
 
-function cycleNews() {
-  newsItems.forEach((item, i) => item.classList.remove('active'));
-  newsItems[currentIndex].classList.add('active');
-  currentIndex = (currentIndex + 1) % newsItems.length;
-}
+      function cycleNews() {
+        newsItems.forEach((item, i) => item.classList.remove('active'));
+        newsItems[currentIndex].classList.add('active');
+        currentIndex = (currentIndex + 1) % newsItems.length;
+      }
 
-if (newsItems.length > 0) {
-  cycleNews(); // Initial
-  setInterval(cycleNews, 4000); // Every 4s
-}
+      if (newsItems.length > 0) {
+        cycleNews(); // Initial
+        setInterval(cycleNews, 4000); // Every 4s
+      }
     }
   } catch (error) {
     console.error('Error loading Google News RSS:', error);
     newsList.innerHTML = '<li>Error loading news.</li>';
   }
 }
-
 
 // 2. Fetch Top Scorers (API-Football)
 async function loadTopScorers() {
