@@ -1,87 +1,117 @@
 :root {
-  --fcbarca-red:   #A50044;
-  --fcbarca-blue:  #004D98;
-  --dark-bg:       #0d0d0d;
-  --dark-alt:      #141414;
-  --light-text:    #f5f5f5;
-  --highlight:     #FFD700;
+  --fcbarca-red: #A50044;
+  --fcbarca-blue: #004D98;
 }
 
-/* Reset & Base */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 body {
+  margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: var(--dark-bg);
-  color: var(--light-text);
-  line-height: 1.5;
+  background-color: #0d0d0d;
+  color: #f5f5f5;
 }
 
-/* ─── NAVBAR ─── */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background: var(--fcbarca-blue);
+  background-color: var(--fcbarca-blue);
   position: relative;
   z-index: 1000;
 }
+
 .logo img {
   height: 40px;
+  vertical-align: middle;
 }
-.navbar-title {
-  flex: 1;
-  text-align: center;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.3em;
-  color: #fff;
+.logo {
+  flex: 0 0 auto;
 }
 
-/* Full nav-links by default (desktop) */
-.nav-links {
-  display: flex !important;
-  gap: 1.2rem;
-  list-style: none;
+.blaugrana-wave {
+  flex: 1 1 auto;
+  text-align: center;
 }
+
+.hamburger {
+  flex: 0 0 auto;
+  cursor: pointer;
+  font-size: 2rem;
+  color: #f5f5f5;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
 .nav-links a {
-  color: var(--light-text);
+  color: #f5f5f5;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
 }
+
 .nav-links a:hover {
   color: var(--fcbarca-red);
 }
 
-/* Hamburger hidden by default */
 .hamburger {
   display: none;
   font-size: 2rem;
-  color: var(--light-text);
   cursor: pointer;
+  color: #f5f5f5;
 }
 
-/* CTA Button */
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav-links {
+    display: flex; /* changed from none to flex for transform to work */
+    flex-direction: column;
+    background-color: var(--fcbarca-blue);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    padding-top: 4rem;
+    gap: 2rem;
+
+    /* Sliding offscreen and smooth transition */
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+    
+    /* Fix: Make sure nav-links are on top */
+    z-index: 9999;  /* Increased z-index */
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+  }
+
+  .hamburger {
+    display: block;
+    position: relative;
+    z-index: 3100; /* Ensure hamburger is above nav-links */
+  }
+}
+
 .cta-btn {
   background: var(--fcbarca-red);
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   font-weight: bold;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.3s;
 }
 .cta-btn:hover {
   background: #fff;
   color: var(--fcbarca-blue);
 }
 
-/* ─── HERO ─── */
+/* Hero */
 .hero {
   position: relative;
   height: 90vh;
@@ -94,234 +124,416 @@ body {
 .hero-video {
   position: absolute;
   top: 50%; left: 50%;
-  min-width: 100%;
-  min-height: 100%;
+  min-width: 100%; min-height: 100%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: 1; /* Ensure hero video is below nav */
 }
 .hero-overlay {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(13, 13, 13, 0.6);
-  z-index: 2;
+  background: rgba(13,13,13,0.6);
+  z-index: 2; /* Overlay above video but below nav */
 }
 .hero-content {
-  position: relative;
-  z-index: 3;
-  max-width: 600px;
-  padding: 1rem;
+  position: relative; z-index: 3;
+  max-width: 600px; padding: 1rem;
 }
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+.hero h1 {
+  font-size: 3rem; margin-bottom: 0.5rem;
   color: var(--fcbarca-red);
 }
-.hero-content p {
-  font-size: 1.2rem;
-}
+.hero p { font-size: 1.2rem; }
 .hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
+  display: flex; gap: 1rem; justify-content: center;
   margin-top: 1rem;
 }
 .btn {
   padding: 0.8rem 2rem;
-  background: var(--fcbarca-red);
-  color: #fff;
-  border: 2px solid #fff;
+  background-color: var(--fcbarca-red);
+  color: white;
+  border: 2px solid white;
   text-decoration: none;
-  transition: background 0.3s, color 0.3s;
+  transition: 0.3s;
 }
 .btn:hover {
-  background: #fff;
+  background-color: white;
   color: var(--fcbarca-blue);
 }
 .whatsapp-cta {
-  background: #25D366;
+  background-color: #25D366;
 }
 .whatsapp-cta:hover {
-  background: #128C7E;
+  background-color: #128C7E;
 }
 
-/* ─── SECTION BASE ─── */
+/* Sections */
 .section {
   padding: 4rem 2rem;
   text-align: center;
 }
-
-/* ─── HOT NEWS ─── */
-.hot-news {
-  background: var(--dark-alt);
+.hot-news ul { list-style: none; padding: 0; }
+.hot-news li { margin: 1rem 0; }
+.hot-news a {
+  color: #FFD700; text-decoration: none;
 }
-.hot-news h2 {
-  font-size: 2rem;
+.hot-news a:hover {
+  color: var(--fcbarca-red);
+}
+.card-grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 2rem; margin-top: 2rem;
+}
+.card {
+  background-color: #222; padding: 2rem; border-radius: 8px;
+  width: 250px; box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+.card:hover { transform: translateY(-5px); }
+.dna { background-color: #141414; }
+.dna-grid {
+  display: flex; flex-wrap: wrap; gap: 2rem;
+  justify-content: center; margin-top: 2rem;
+}
+.player-profile {
+  background-color: #1a1a1a; padding: 1.5rem;
+  border-radius: 10px; width: 200px;
+}
+.player-profile img {
+  width: 100%; border-radius: 8px;
+}
+.stats { background-color: #100f12; }
+.scorer-table {
+  margin: 1.5rem auto; border-collapse: collapse; width: 80%;
+}
+.scorer-table th,
+.scorer-table td {
+  padding: 0.75rem 1rem; border: 1px solid #333;
+}
+.scorer-table th {
+  background-color: #222;
+}
+.heatmap-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+}
+.heatmap-grid::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+              /* Hide scrollbar in Chrome/Safari */
+}
+footer {
+  background-color: var(--fcbarca-blue);
+  padding: 1rem; text-align: center; color: #aaa;
+}
+
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  /* Navbar: stack nav-links vertically and add spacing */
+  .nav-links {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  
+  /* Reduce navbar padding */
+  .navbar {
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  /* Hero content: reduce padding and width */
+  .hero-content {
+    max-width: 90%;
+    padding: 0 1rem;
+  }
+  
+  /* Hero headline smaller */
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  /* Card grid: stack cards vertically */
+  .card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Card width: use max-width 90% instead of fixed width */
+  .card {
+    width: 90%;
+    max-width: 300px;
+  }
+  
+  /* Player profile width */
+  .player-profile {
+    width: 90%;
+    max-width: 300px;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Scorer table: make it scrollable horizontally */
+  .scorer-table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+  
+  /* Heatmap grid: 1 column */
+  .heatmap-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Buttons in hero stacked vertically with gap */
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+/* Matchday Section */
+.matchday-section {
+  padding: 4rem 2rem;
+  background-color: #1a1a1a;
+  text-align: center;
+  color: #fff;
+}
+
+.matchday-section h2 {
   color: var(--fcbarca-red);
   margin-bottom: 2rem;
+  font-size: 2rem;
 }
-#news-list {
-  list-style: none;
-  max-width: 800px;
-  margin: 0 auto;
+
+.matchday-fixture {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-#news-list li {
-  background: #1a1a1a;
-  padding: 1rem 1.5rem;
-  border-left: 4px solid var(--fcbarca-red);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-#news-list li:nth-child(1) { animation-delay: 0.2s; }
-#news-list li:nth-child(2) { animation-delay: 0.4s; }
-#news-list li:nth-child(3) { animation-delay: 0.6s; }
-#news-list li:nth-child(4) { animation-delay: 0.8s; }
-/* Add more nth-child delays if you expect more items */
-#news-list a {
-  color: var(--highlight);
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-#news-list a:hover {
-  color: var(--fcbarca-red);
-}
-
-/* ─── MATCHDAY ─── */
-.matchday-section {
-  background: var(--dark-alt);
-}
-.matchday-section h2 {
-  font-size: 2rem;
-  color: var(--fcbarca-red);
-  margin-bottom: 2rem;
-}
-.matchday-fixture {
-  background: #2a2a2a;
+  align-items: center;
+  background-color: #2a2a2a;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
   max-width: 400px;
-  margin: 2rem auto;
-  animation: fadeInUp 1s ease forwards, glowPulse 3s ease-in-out infinite;
-  border: 2px solid var(--fcbarca-red);
+  margin: 0 auto;
 }
-.calendar {
+
+.matchday-fixture p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.matchday-fixture .teams {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #003399;
+  gap: 1rem;
+  margin: 1rem 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.matchday-fixture .vs {
+  font-size: 1.2rem;
+  color: var(--fcbarca-red);
+}
+
+.matchday-fixture .date,
+.matchday-fixture .venue {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .matchday-fixture {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  .matchday-fixture .teams {
+    flex-direction: column;
+    font-size: 1.2rem;
+  }
+
+  .matchday-fixture .vs {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+}
+.match-card {
+  background-color: #1e1e1e;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 0 auto 1.5rem auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  min-height: 140px;
+  align-items: stretch;
+}
+.match-card:hover {
+  transform: translateY(-5px);
+}
+.match-card .calendar {
+  background-color: #003399;
   width: 70px;
+  min-width: 70px;
   height: 70px;
   border-radius: 10px;
-  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-weight: bold;
-  margin-bottom: 1rem;
+  color: #fff;
+  margin-right: 1.2rem;
+  align-self: center;
 }
-.calendar .day {
+.match-card .calendar .day {
   font-size: 2rem;
+  line-height: 1.2;
 }
-.calendar .month {
+.match-card .calendar .month {
   font-size: 1rem;
   text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.match-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .match-info .teams {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 10px;
+  margin-bottom: 0.3rem;
+}
+}
+.team-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+}
+.vs {
   font-size: 1.2rem;
   font-weight: bold;
+  color: #fcba03;
 }
 .match-info h3 {
-  color: #fcba03;
-  margin: 0.5rem 0;
   font-size: 1.1rem;
+  color: #fcba03;
+  margin: 0.3rem 0;
 }
 .match-info p {
+  font-size: 0.95rem;
   color: #ccc;
-  margin: 0.5rem 0;
+  margin: 0.2rem 0;
 }
-.match-summary {
-  margin-top: 1rem;
-  text-align: left;
-  color: #ddd;
+.match-info span {
+  font-size: 0.92rem;
+  color: #999;
 }
-
-/* ─── DNA ─── */
-.dna {
-  background: var(--dark-alt);
+@media (max-width: 500px) {
+  .match-card {
+    flex-direction: column;
+    align-items: center;
+    max-width: 98vw;
+    padding: 1rem;
+  }
+  .match-card .calendar {
+    margin: 0 0 0.7rem 0;
+  }
+  .team-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  vertical-align: middle;
 }
-.dna-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  margin-top: 2rem;
-}
-.player-profile {
-  background: #1a1a1a;
-  padding: 1.5rem;
-  border-radius: 10px;
-  width: 200px;
-  text-align: center;
-}
-.player-profile img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
+  }
+  .team-logo {
+    width: 28px;
+  }
 }
 
-/* ─── STATS ─── */
-.stats {
-  background: var(--dark-alt);
-}
-.scorer-table {
-  margin: 1.5rem auto;
-  border-collapse: collapse;
-  width: 80%;
-}
-.scorer-table th,
-.scorer-table td {
-  padding: 0.75rem 1rem;
-  border: 1px solid #333;
-}
-.scorer-table th {
-  background: #222;
+/* Fade-in on page load */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ─── HEATMAP CAROUSEL ─── */
+/* Glowing pulse animation for border */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px 2px #A50044; /* Barca red glow */
+  }
+  50% {
+    box-shadow: 0 0 12px 4px #004D98; /* Barca blue glow */
+  }
+}
+
+/* Apply fade-in + glowPulse to match cards */
+.matchday-fixture {
+  animation: fadeInUp 1s ease forwards,
+             glowPulse 3s ease-in-out infinite;
+  border: 2px solid #A50044; /* starting border color */
+  border-radius: 12px;
+}
 .heatmap-carousel {
   position: relative;
+  width: 100%;
   max-width: 320px;
   height: 220px;
-  margin: 2rem auto;
+  margin: 2rem auto 0 auto;
   overflow: hidden;
   border-radius: 12px;
-  background: #222;
   box-shadow: 0 0 12px rgba(165,0,68,0.6);
+  background: #222;
 }
+}
+
 .carousel-track {
   display: flex;
-  transition: transform 1s ease;
+  transition: transform 1s cubic-bezier(0.77,0,0.18,1);
+  height: 100%;
 }
+}
+
 .slide {
   min-width: 100%;
   height: 100%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
+
 .heatmap-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 12px;
+  object-fit: cover;
 }
+
 .player-img {
   position: absolute;
   top: 12px;
@@ -329,86 +541,8 @@ body {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 3px solid var(--fcbarca-red);
-  box-shadow: 0 0 8px rgba(165,0,68,0.9);
-}
-
-/* ─── TROPHIES ─── */
-.trophies {
-  background: var(--dark-alt);
-}
-.trophies h2 {
-  font-size: 2.2rem;
-  color: var(--fcbarca-red);
-  margin-bottom: 2.5rem;
-}
-.trophies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-}
-.trophy-card {
-  background: #1a1a1a;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  transition: transform 0.3s;
-}
-.trophy-card:hover {
-  transform: translateY(-5px);
-}
-.trophy-card img {
-  height: 80px;
-  margin-bottom: 1rem;
-}
-.trophy-card h4 {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
-}
-.trophy-card p {
-  color: #ccc;
-}
-
-/* ─── FOOTER ─── */
-footer {
-  background: var(--fcbarca-blue);
-  padding: 1rem;
-  text-align: center;
-  color: #aaa;
-}
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes glowPulse {
-  0%, 100% {
-    box-shadow: 0 0 8px 2px var(--fcbarca-red);
-  }
-  50% {
-    box-shadow: 0 0 12px 4px var(--fcbarca-blue);
-  }
-}
-
-/* ─── MOBILE TWEAKS ─── */
-@media (max-width: 768px) {
-  .hero-content h1 {
-    font-size: 2rem;
-  }
-  .hero-buttons {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  .scorer-table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-  }
+  border: 3px solid #A50044;
+  box-shadow: 0 0 8px rgba(165, 0, 68, 0.9);
+  object-fit: cover;
+  z-index: 10;
 }
