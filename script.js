@@ -27,19 +27,28 @@ async function loadGoogleNewsRSS() {
 });
 
       // Animate News Fading Sequentially
-      let newsItems = newsList.querySelectorAll('li');
-      let currentIndex = 0;
+    function startNewsTicker() {
+  const newsItems = document.querySelectorAll('.news-ticker li');
+  let current = 0;
 
-      function cycleNews() {
-        newsItems.forEach((item, i) => item.classList.remove('active'));
-        newsItems[currentIndex].classList.add('active');
-        currentIndex = (currentIndex + 1) % newsItems.length;
-      }
+  function showNext() {
+    newsItems.forEach(item => item.classList.remove('active'));
+    if (newsItems.length > 0) {
+      newsItems[current].classList.add('active');
+      current = (current + 1) % newsItems.length;
+    }
+  }
 
-      if (newsItems.length > 0) {
-        cycleNews(); // Initial
-        setInterval(cycleNews, 4000); // Every 4s
-      }
+  showNext();
+  setInterval(showNext, 5000); // Switch every 5s
+}
+
+// Add to DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  loadGoogleNewsRSS().then(() => {
+    startNewsTicker(); // wait until news is loaded
+  });
+});
     }
   } catch (error) {
     console.error('Error loading Google News RSS:', error);
