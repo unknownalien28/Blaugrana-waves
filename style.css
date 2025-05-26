@@ -547,32 +547,72 @@ footer {
   z-index: 10;
 }
 .breaking-news {
-  background-color: #ff4c4c;
-  color: white;
-  padding: 10px;
-  overflow: hidden;
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-  height: 40px;
+  background: linear-gradient(to right, #1a1a1a, #333);
+  color: #fff;
+  padding: 12px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
   position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  height: 50px;
+}
+
+.breaking-news::before {
+  content: "🔥 Breaking News";
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #e50914;
+  color: #fff;
+  padding: 0 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  z-index: 2;
 }
 
 .news-ticker {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0 0 0 120px; /* offset to allow space for the label */
   height: 100%;
   position: relative;
 }
 
 .news-ticker li {
   position: absolute;
-  width: 100%;
+  top: 0;
+  left: 0;
+  width: calc(100% - 120px);
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  text-align: center;
-  line-height: 40px;
-  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 50px;
+}
+
+.news-ticker li a {
+  color: #00acee;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.news-ticker li a:hover {
+  text-decoration: underline;
+}
+
+.news-ticker li small {
+  color: #ccc;
+  margin-left: 10px;
+  font-size: 0.8rem;
 }
 
 .news-ticker li.active {
