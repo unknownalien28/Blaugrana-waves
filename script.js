@@ -7,7 +7,7 @@ async function loadGoogleNewsRSS() {
 
   try {
     const response = await fetch(proxyUrl);
-    const data = await response.text(); // Correct: get plain text
+    const data = await response.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(data, "text/xml");
     const items = xmlDoc.querySelectorAll('item');
@@ -23,20 +23,20 @@ async function loadGoogleNewsRSS() {
         const pubDate = new Date(item.querySelector('pubDate').textContent);
         const li = document.createElement('li');
         li.innerHTML = `
-          <a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a>
+          <a href="${link}" target="_blank">${title}</a>
           <br><small>${pubDate.toLocaleDateString()}</small>
         `;
         newsList.appendChild(li);
       });
-    }
 
+      startNewsTicker(); // Start rotation after loading
+    }
   } catch (error) {
     console.error('Error loading Google News RSS:', error);
     newsList.innerHTML = '<li>Error loading news.</li>';
   }
 }
 
-// 2. Breaking News Ticker
 function startNewsTicker() {
   const newsItems = document.querySelectorAll('.news-ticker li');
   let current = 0;
@@ -50,10 +50,14 @@ function startNewsTicker() {
   }
 
   showNext();
-  setInterval(showNext, 5000); // Switch every 5 seconds
+  setInterval(showNext, 5000);
 }
 
-// 3. Fetch Top Scorers (API-Football)
+document.addEventListener('DOMContentLoaded', () => {
+  loadGoogleNewsRSS();
+});
+
+// 2. Fetch Top Scorers (API-Football)
 async function loadTopScorers() {
   try {
     const response = await fetch('https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=140&season=2024', {
@@ -68,20 +72,20 @@ async function loadTopScorers() {
     const tbody = document.getElementById('scorer-body');
     data.response.slice(0, 5).forEach((item, idx) => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `
+      tr.innerHTML = 
         <td>${idx + 1}</td>
         <td>${item.player.name}</td>
         <td>${item.statistics[0].goals.total}</td>
-      `;
+      ;
       tbody.appendChild(tr);
     });
-
   } catch (error) {
     console.error('Top scorers fetch error:', error);
   }
 }
 
-// 4. Responsive Hamburger Menu Toggle
+
+// 3. Responsive Hamburger Menu Toggle
 function initHamburgerMenu() {
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
@@ -92,9 +96,10 @@ function initHamburgerMenu() {
   }
 }
 
-// 5. Match Calendar Setup
+
+// 4. Match Calendar Setup
 function updateMatchCalendar() {
-  const matchDate = new Date('2025-05-24'); // Change this date as needed
+  const matchDate = new Date('2025-05-24'); // CHANGE DATE
   const day = matchDate.getDate();
   const month = matchDate.toLocaleString('default', { month: 'short' }).toUpperCase();
 
@@ -115,7 +120,8 @@ function updateMatchCalendar() {
   }
 }
 
-// 6. Auto-Sliding Heatmap Carousel
+
+// 5. Auto-Sliding Heatmap Carousel (Horizontal)
 function initHeatmapCarousel() {
   const slides = document.querySelectorAll('.heatmap-carousel .slide');
   let current = 0;
@@ -133,13 +139,13 @@ function initHeatmapCarousel() {
   }
 
   showSlide(current);
-  setInterval(nextSlide, 5000);
+  setInterval(nextSlide, 5000); // Every 4 seconds
 }
 
-// 7. Initialize on Page Load
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadGoogleNewsRSS();
-  startNewsTicker();
+
+// 6. Init on Page Load
+document.addEventListener('DOMContentLoaded', () => {
+  loadGoogleNewsRSS();
   loadTopScorers();
   initHamburgerMenu();
   updateMatchCalendar();
