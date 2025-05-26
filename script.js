@@ -16,15 +16,15 @@ async function loadGoogleNewsRSS() {
     if (items.length === 0) {
       newsList.innerHTML = '<li>No recent news found.</li>';
     } else {
-      items.forEach((item, i) => {
-        const title = item.querySelector('title').textContent;
-        const link = item.querySelector('link').textContent;
-        const pubDate = new Date(item.querySelector('pubDate').textContent);
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a> 
-                        <br><small>${pubDate.toLocaleDateString()}</small>`;
-        newsList.appendChild(li);
-      });
+     Array.from(items).reverse().forEach((item, i) => {
+  const title = item.querySelector('title').textContent;
+  const link = item.querySelector('link').textContent;
+  const pubDate = new Date(item.querySelector('pubDate').textContent);
+  const li = document.createElement('li');
+  li.innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a> 
+                  <br><small>${pubDate.toLocaleDateString()}</small>`;
+  newsList.appendChild(li);
+});
 
       // Animate News Fading Sequentially
       let newsItems = newsList.querySelectorAll('li');
