@@ -663,3 +663,21 @@ footer {
     color: #ccc;
   }
 }
+/* --- Trophies Section Animations --- */
+.trophy-card {
+  transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.trophy-card:hover {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+}
+.trophy-card img {
+  animation: shine 1.2s ease-in-out alternate infinite;
+}
+@keyframes shine {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.18) drop-shadow(0 0 8px gold); }
+}
