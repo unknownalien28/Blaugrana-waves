@@ -546,3 +546,35 @@ footer {
   object-fit: cover;
   z-index: 10;
 }
+.breaking-news {
+  background-color: #ff4c4c;
+  color: white;
+  padding: 10px;
+  overflow: hidden;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  height: 40px;
+  position: relative;
+}
+
+.news-ticker {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  position: relative;
+}
+
+.news-ticker li {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  text-align: center;
+  line-height: 40px;
+  font-size: 1rem;
+}
+
+.news-ticker li.active {
+  opacity: 1;
+}
