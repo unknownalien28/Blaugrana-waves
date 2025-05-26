@@ -1,33 +1,43 @@
 // 1. Load Google News RSS (Barcelona FC)
 async function loadGoogleNewsRSS() {
- const rssUrl = 'https://news.google.com/rss/search?q=Barcelona+FC&hl=en-US&gl=US&ceid=US:en';
- const proxyUrl = `https://thingproxy.freeboard.io/fetch/${rssUrl}`;
+  const rssUrl = 'https://news.google.com/rss/search?q=Barcelona+FC&hl=en-US&gl=US&ceid=US:en';
+  const proxyUrl = `https://thingproxy.freeboard.io/fetch/${rssUrl}`;
   const newsList = document.getElementById('news-list');
   newsList.innerHTML = '<li>Loading news...</li>';
 
   try {
     const response = await fetch(proxyUrl);
-    const data = await response.json();
+    const data = await response.text(); // Correct: get plain text
     const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+    const xmlDoc = parser.parseFromString(data, "text/xml");
     const items = xmlDoc.querySelectorAll('item');
 
     newsList.innerHTML = '';
+
     if (items.length === 0) {
       newsList.innerHTML = '<li>No recent news found.</li>';
     } else {
-     Array.from(items).reverse().forEach((item, i) => {
-  const title = item.querySelector('title').textContent;
-  const link = item.querySelector('link').textContent;
-  const pubDate = new Date(item.querySelector('pubDate').textContent);
-  const li = document.createElement('li');
-  li.innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a> 
-                  <br><small>${pubDate.toLocaleDateString()}</small>`;
-  newsList.appendChild(li);
-});
+      Array.from(items).reverse().forEach((item) => {
+        const title = item.querySelector('title').textContent;
+        const link = item.querySelector('link').textContent;
+        const pubDate = new Date(item.querySelector('pubDate').textContent);
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a>
+          <br><small>${pubDate.toLocaleDateString()}</small>
+        `;
+        newsList.appendChild(li);
+      });
+    }
 
-      // Animate News Fading Sequentially
-    function startNewsTicker() {
+  } catch (error) {
+    console.error('Error loading Google News RSS:', error);
+    newsList.innerHTML = '<li>Error loading news.</li>';
+  }
+}
+
+// 2. Breaking News Ticker
+function startNewsTicker() {
   const newsItems = document.querySelectorAll('.news-ticker li');
   let current = 0;
 
@@ -40,23 +50,10 @@ async function loadGoogleNewsRSS() {
   }
 
   showNext();
-  setInterval(showNext, 5000); // Switch every 5s
+  setInterval(showNext, 5000); // Switch every 5 seconds
 }
 
-// Add to DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-  loadGoogleNewsRSS().then(() => {
-    startNewsTicker(); // wait until news is loaded
-  });
-});
-    }
-  } catch (error) {
-    console.error('Error loading Google News RSS:', error);
-    newsList.innerHTML = '<li>Error loading news.</li>';
-  }
-}
-
-// 2. Fetch Top Scorers (API-Football)
+// 3. Fetch Top Scorers (API-Football)
 async function loadTopScorers() {
   try {
     const response = await fetch('https://api-football-v1.p.rapidapi.com/v3/players/topscorers?league=140&season=2024', {
@@ -71,20 +68,20 @@ async function loadTopScorers() {
     const tbody = document.getElementById('scorer-body');
     data.response.slice(0, 5).forEach((item, idx) => {
       const tr = document.createElement('tr');
-      tr.innerHTML = 
+      tr.innerHTML = `
         <td>${idx + 1}</td>
         <td>${item.player.name}</td>
         <td>${item.statistics[0].goals.total}</td>
-      ;
+      `;
       tbody.appendChild(tr);
     });
+
   } catch (error) {
     console.error('Top scorers fetch error:', error);
   }
 }
 
-
-// 3. Responsive Hamburger Menu Toggle
+// 4. Responsive Hamburger Menu Toggle
 function initHamburgerMenu() {
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
@@ -95,10 +92,9 @@ function initHamburgerMenu() {
   }
 }
 
-
-// 4. Match Calendar Setup
+// 5. Match Calendar Setup
 function updateMatchCalendar() {
-  const matchDate = new Date('2025-05-24'); // CHANGE DATE
+  const matchDate = new Date('2025-05-24'); // Change this date as needed
   const day = matchDate.getDate();
   const month = matchDate.toLocaleString('default', { month: 'short' }).toUpperCase();
 
@@ -119,8 +115,7 @@ function updateMatchCalendar() {
   }
 }
 
-
-// 5. Auto-Sliding Heatmap Carousel (Horizontal)
+// 6. Auto-Sliding Heatmap Carousel
 function initHeatmapCarousel() {
   const slides = document.querySelectorAll('.heatmap-carousel .slide');
   let current = 0;
@@ -138,16 +133,15 @@ function initHeatmapCarousel() {
   }
 
   showSlide(current);
-  setInterval(nextSlide, 5000); // Every 4 seconds
+  setInterval(nextSlide, 5000);
 }
 
-
-// 6. Init on Page Load
-document.addEventListener('DOMContentLoaded', () => {
-  loadGoogleNewsRSS();
+// 7. Initialize on Page Load
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadGoogleNewsRSS();
+  startNewsTicker();
   loadTopScorers();
   initHamburgerMenu();
   updateMatchCalendar();
   initHeatmapCarousel();
 });
-
