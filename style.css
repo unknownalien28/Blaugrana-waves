@@ -677,6 +677,12 @@ footer {
 .trophy-card img {
   animation: shine 1.2s ease-in-out alternate infinite;
 }
+.trophy-card img {
+  width: 90px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
 @keyframes shine {
   0% { filter: brightness(1); }
   100% { filter: brightness(1.18) drop-shadow(0 0 8px gold); }
